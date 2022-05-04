@@ -42,6 +42,7 @@ export default class PdfView extends Component {
         onScaleChanged: PropTypes.func,
         footer: PropTypes.element,
         extraHeight: PropTypes.number,
+        scrollEnabled: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -65,6 +66,7 @@ export default class PdfView extends Component {
         },
         footer: null,
         extraHeight: 0,
+        scrollEnabled: true,
     };
 
     constructor(props) {
@@ -355,7 +357,6 @@ export default class PdfView extends Component {
         }
 
         // Add last item as the footer
-        console.warn(this.props.footer)
         if (this.props.footer) {
             data.push({key: data.length, footer: true});
         }
@@ -368,7 +369,7 @@ export default class PdfView extends Component {
                 contentContainerStyle={[{
                     justifyContent: 'center',
                     alignItems: 'center'
-                }, this.props.horizontal ? {height: (this.state.contentContainerSize.height * this.state.scale) + this.props.extraHeight} : {width: (this.state.contentContainerSize.width * this.state.scale)+ this.props.extraHeight}]}
+                }, this.props.horizontal ? {height: (this.state.contentContainerSize.height * this.state.scale) + this.props.extraHeight} : {width: (this.state.contentContainerSize.width * this.state.scale)}]}
                 horizontal={this.props.horizontal}
                 data={data}
                 renderItem={this._renderItem}
@@ -380,6 +381,7 @@ export default class PdfView extends Component {
                     {...props}
                     centerContent={this.state.centerContent}
                     pinchGestureEnabled={false}
+                    scrollEnabled={this.props.scrollEnabled}
                 />}
                 initialScrollIndex={this.props.page < 1 ? 0 : this.props.page - 1}
                 onViewableItemsChanged={this._onViewableItemsChanged}

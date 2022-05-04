@@ -47,6 +47,7 @@ interface Props {
     singlePage?: boolean,
     footer?: React.ReactElement,
     extraHeight: number,
+    scrollEnabled: boolean,
     onLoadProgress?: (percent: number,) => void,
     onLoadComplete?: (numberOfPages: number, path: string, size: {height: number, width: number}, tableContents?: TableContent[]) => void,
     onPageChanged?: (page: number, numberOfPages: number) => void,

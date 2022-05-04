@@ -72,6 +72,7 @@ export default class Pdf extends Component {
         // Props for a footer view below the PDF view
         footer: PropTypes.element,
         extraHeight: PropTypes.number,
+        scrollEnabled: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -434,6 +435,7 @@ export default class Pdf extends Component {
                                                 onPressLink={this.props.onPressLink}
                                                 footer={this.props.footer}
                                                 extraHeight={this.props.extraHeight}
+                                                scrollEnabled={this.props.scrollEnabled}
                                             />)
                                     )
                                 )}
