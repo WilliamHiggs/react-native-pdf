@@ -43,6 +43,7 @@ export default class PdfView extends Component {
         footer: PropTypes.element,
         extraHeight: PropTypes.number,
         scrollEnabled: PropTypes.bool,
+        scrollRef: PropTypes.func,
     };
 
     static defaultProps = {
@@ -67,6 +68,8 @@ export default class PdfView extends Component {
         footer: null,
         extraHeight: 0,
         scrollEnabled: true,
+        scrollRef: (ref) => {
+        },
     };
 
     constructor(props) {
@@ -378,6 +381,7 @@ export default class PdfView extends Component {
                 getItemLayout={this._getItemLayout}
                 maxToRenderPerBatch={1}
                 renderScrollComponent={(props) => <ScrollView
+                    ref={ref => this.props.scrollRef(ref)}
                     {...props}
                     centerContent={this.state.centerContent}
                     pinchGestureEnabled={false}

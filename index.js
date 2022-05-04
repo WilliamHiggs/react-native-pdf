@@ -73,6 +73,7 @@ export default class Pdf extends Component {
         footer: PropTypes.element,
         extraHeight: PropTypes.number,
         scrollEnabled: PropTypes.bool,
+        scrollRef: PropTypes.func,
     };
 
     static defaultProps = {
@@ -107,6 +108,8 @@ export default class Pdf extends Component {
         },
         footer: null,
         extraHeight:0,
+        scrollRef: (ref) => {
+        },
     };
 
     constructor(props) {
@@ -436,6 +439,7 @@ export default class Pdf extends Component {
                                                 footer={this.props.footer}
                                                 extraHeight={this.props.extraHeight}
                                                 scrollEnabled={this.props.scrollEnabled}
+                                                scrollRef={ref => this.props.scrollRef && this.props.scrollRef(ref)}
                                             />)
                                     )
                                 )}
