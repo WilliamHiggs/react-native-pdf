@@ -329,7 +329,10 @@ export default class PdfView extends Component {
     };
 
 
-    _getRef = (ref) => this._flatList = ref;
+    _getRef = (ref) => {
+        this._flatList = ref;
+        this.props.scrollRef && this.props.scrollRef(ref);
+    }
 
     _getItemLayout = (data, index) => ({
         length: this.props.horizontal ? this._getPageWidth() : this._getPageHeight(),
@@ -381,7 +384,6 @@ export default class PdfView extends Component {
                 getItemLayout={this._getItemLayout}
                 maxToRenderPerBatch={1}
                 renderScrollComponent={(props) => <ScrollView
-                    ref={ref => this.props.scrollRef(ref)}
                     {...props}
                     centerContent={this.state.centerContent}
                     pinchGestureEnabled={false}
