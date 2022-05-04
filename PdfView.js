@@ -41,6 +41,7 @@ export default class PdfView extends Component {
         onPageSingleTap: PropTypes.func,
         onScaleChanged: PropTypes.func,
         footer: PropTypes.element,
+        extraHeight: PropTypes.number,
     };
 
     static defaultProps = {
@@ -63,6 +64,7 @@ export default class PdfView extends Component {
         onScaleChanged: (scale) => {
         },
         footer: null,
+        extraHeight: 0,
     };
 
     constructor(props) {
@@ -365,7 +367,7 @@ export default class PdfView extends Component {
                 contentContainerStyle={[{
                     justifyContent: 'center',
                     alignItems: 'center'
-                }, this.props.horizontal ? {height: this.state.contentContainerSize.height * this.state.scale} : {width: this.state.contentContainerSize.width * this.state.scale}]}
+                }, this.props.horizontal ? {height: (this.state.contentContainerSize.height * this.state.scale) + this.props.extraHeight} : {width: (this.state.contentContainerSize.width * this.state.scale)+ this.props.extraHeight}]}
                 horizontal={this.props.horizontal}
                 data={data}
                 renderItem={this._renderItem}

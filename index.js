@@ -71,6 +71,7 @@ export default class Pdf extends Component {
 
         // Props for a footer view below the PDF view
         footer: PropTypes.element,
+        extraHeight: PropTypes.number,
     };
 
     static defaultProps = {
@@ -413,7 +414,7 @@ export default class Pdf extends Component {
                                         <PdfCustom
                                             ref={component => (this._root = component)}
                                             {...this.props}
-                                            style={[{flex:1,backgroundColor: '#EEE'}, this.props.style]}
+                                            style={[{flex:1,backgroundColor: '#FFF'}, this.props.style]}
                                             path={this.state.path}
                                             onChange={this._onChange}
                                         />
@@ -422,7 +423,7 @@ export default class Pdf extends Component {
                                                 <PdfCustom
                                                     ref={component => (this._root = component)}
                                                     {...this.props}
-                                                    style={[{backgroundColor: '#EEE',overflow: 'hidden'}, this.props.style]}
+                                                    style={[{backgroundColor: '#FFF',overflow: 'hidden'}, this.props.style]}
                                                     path={this.state.path}
                                                     onChange={this._onChange}
                                                 />
@@ -437,6 +438,7 @@ export default class Pdf extends Component {
                                                 onScaleChanged={this.props.onScaleChanged}
                                                 onPressLink={this.props.onPressLink}
                                                 footer={this.props.footer}
+                                                extraHeight={this.props.extraHeight}
                                             />)
                                     )
                                 )}
