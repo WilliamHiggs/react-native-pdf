@@ -273,7 +273,7 @@ export default class PdfView extends Component {
         )
 
         // If we have the footer at this index, render it at the bottom of the flat list
-        if (this.props.footer && item.key.includes('footer')) {
+        if (this.props.footer && item.footer) {
             return (
                 <View key={item.key}>
                     {this.props.footer}
@@ -354,7 +354,7 @@ export default class PdfView extends Component {
 
         // Add last item as the footer
         if (this.props.footer) {
-            data.push({key: data.length + '-footer'});
+            data.push({key: data.length, footer: true});
         }
 
         return (

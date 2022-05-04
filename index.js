@@ -428,7 +428,7 @@ export default class Pdf extends Component {
                                                 />
                                             ):(<PdfView
                                                 {...this.props}
-                                                style={[{backgroundColor: '#EEE',overflow: 'hidden'}, this.props.style]}
+                                                style={[{backgroundColor: '#FFF',overflow: 'hidden'}, this.props.style]}
                                                 path={this.state.path}
                                                 onLoadComplete={this.props.onLoadComplete}
                                                 onPageChanged={this.props.onPageChanged}
