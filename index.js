@@ -105,6 +105,7 @@ export default class Pdf extends Component {
         onPressLink: (url) => {
         },
         footer: null,
+        extraHeight:0,
     };
 
     constructor(props) {
@@ -150,6 +151,8 @@ export default class Pdf extends Component {
             });
         }
         this._loadFromSource(this.props.source);
+
+        console.warn(this.props.extraHeight)
     }
 
     componentWillUnmount() {
@@ -391,12 +394,6 @@ export default class Pdf extends Component {
         this.props.onError && this.props.onError(error);
 
     };
-
-    footerComponent() {
-        return (
-            this.props.footer ? this.props.footer : <></>
-        )
-    }
 
     render() {
         if (Platform.OS === "android" || Platform.OS === "ios" || Platform.OS === "windows") {

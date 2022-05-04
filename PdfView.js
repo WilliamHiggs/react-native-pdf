@@ -274,6 +274,9 @@ export default class PdfView extends Component {
             />
         )
 
+        console.warn(item.footer)
+        console.warn(this.props.footer)
+
         // If we have the footer at this index, render it at the bottom of the flat list
         if (this.props.footer && item.footer) {
             return (
