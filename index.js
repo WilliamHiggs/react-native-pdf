@@ -68,6 +68,9 @@ export default class Pdf extends Component {
         onLayout: PropTypes.bool,
         accessibilityLiveRegion: PropTypes.string,
         accessibilityComponentType: PropTypes.string,
+
+        // Props for a footer view below the PDF view
+        footer: PropTypes.element,
     };
 
     static defaultProps = {
@@ -100,6 +103,7 @@ export default class Pdf extends Component {
         },
         onPressLink: (url) => {
         },
+        footer: null,
     };
 
     constructor(props) {
@@ -387,6 +391,12 @@ export default class Pdf extends Component {
 
     };
 
+    footerComponent() {
+        return (
+            this.props.footer ? this.props.footer : <></>
+        )
+    }
+
     render() {
         if (Platform.OS === "android" || Platform.OS === "ios" || Platform.OS === "windows") {
                 return (
@@ -426,6 +436,7 @@ export default class Pdf extends Component {
                                                 onPageSingleTap={this.props.onPageSingleTap}
                                                 onScaleChanged={this.props.onScaleChanged}
                                                 onPressLink={this.props.onPressLink}
+                                                footer={this.props.footer}
                                             />)
                                     )
                                 )}

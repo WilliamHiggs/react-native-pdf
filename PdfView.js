@@ -40,6 +40,7 @@ export default class PdfView extends Component {
         singlePage: PropTypes.bool,
         onPageSingleTap: PropTypes.func,
         onScaleChanged: PropTypes.func,
+        footer: PropTypes.element,
     };
 
     static defaultProps = {
@@ -61,6 +62,7 @@ export default class PdfView extends Component {
         },
         onScaleChanged: (scale) => {
         },
+        footer: null,
     };
 
     constructor(props) {
@@ -270,6 +272,15 @@ export default class PdfView extends Component {
             />
         )
 
+        // If we have the footer at this index, render it at the bottom of the flat list
+        if (this.props.footer && item.key.includes('footer')) {
+            return (
+                <View key={item.key}>
+                    {this.props.footer}
+                </View>
+            )
+        }
+
         if (this.props.singlePage) {
             return (
                 <View style={{flexDirection: this.props.horizontal ? 'row' : 'column'}} >
@@ -339,6 +350,11 @@ export default class PdfView extends Component {
             for (let i = 0; i < this.state.numberOfPages; i++) {
                 data[i] = {key: i};
             }
+        }
+
+        // Add last item as the footer
+        if (this.props.footer) {
+            data.push({key: data.length + '-footer'});
         }
 
         return (
