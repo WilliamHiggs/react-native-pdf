@@ -45,6 +45,8 @@ interface Props {
     fitPolicy?: number,
     trustAllCerts?: boolean,
     singlePage?: boolean,
+    footer?: React.ReactElement,
+    extraHeight: number,
     onLoadProgress?: (percent: number,) => void,
     onLoadComplete?: (numberOfPages: number, path: string, size: {height: number, width: number}, tableContents?: TableContent[]) => void,
     onPageChanged?: (page: number, numberOfPages: number) => void,

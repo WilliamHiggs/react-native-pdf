@@ -151,8 +151,6 @@ export default class Pdf extends Component {
             });
         }
         this._loadFromSource(this.props.source);
-
-        console.warn(this.props.extraHeight)
     }
 
     componentWillUnmount() {
