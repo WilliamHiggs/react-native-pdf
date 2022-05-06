@@ -171,9 +171,11 @@ export default class PdfView extends Component {
         let fitPolicy = this.props.fitPolicy;
 
         // if only one page, show whole page in center
+        /* We may want to remove this behavior to allow whole pages to fill screen
         if (this.state.numberOfPages === 1 || this.props.singlePage) {
             fitPolicy = 2;
         }
+        */
 
 
         switch (fitPolicy) {
@@ -198,9 +200,11 @@ export default class PdfView extends Component {
         let fitPolicy = this.props.fitPolicy;
 
         // if only one page, show whole page in center
+        /* We may want to remove this behavior to allow whole pages to fill screen
         if (this.state.numberOfPages === 1 || this.props.singlePage) {
             fitPolicy = 2;
         }
+        */
 
         switch (fitPolicy) {
             case 0: //fit width
@@ -375,7 +379,7 @@ export default class PdfView extends Component {
                 contentContainerStyle={[{
                     justifyContent: 'center',
                     alignItems: 'center'
-                }, this.props.horizontal ? {height: (this.state.contentContainerSize.height * this.state.scale) + this.props.extraHeight} : {width: (this.state.contentContainerSize.width * this.state.scale)}]}
+                }, this.props.horizontal ? {height: (this.state.contentContainerSize.height * this.state.scale)} : {width: (this.state.contentContainerSize.width * this.state.scale) + this.props.extraHeight}]}
                 horizontal={this.props.horizontal}
                 data={data}
                 renderItem={this._renderItem}
