@@ -27,7 +27,7 @@ export type Source = {
     method?: string;
 };
 
-export interface PdfProps {
+interface Props {
     style?: ReactNative.StyleProp<ReactNative.ViewStyle>,
     source: Source | number,
     page?: number,
@@ -35,8 +35,6 @@ export interface PdfProps {
     minScale?: number,
     maxScale?: number,
     horizontal?: boolean,
-    showsHorizontalScrollIndicator?: boolean,
-    showsVerticalScrollIndicator?: boolean,
     spacing?: number,
     password?: string,
     renderActivityIndicator?: (progress: number) => React.ReactElement,
@@ -60,7 +58,7 @@ export interface PdfProps {
     onPressLink?: (url: string) => void,
 }
 
-declare class Pdf extends React.Component<PdfProps, any> {
+declare class Pdf extends React.Component<Props, any> {
     setPage: (pageNumber: number) => void;
 }
 

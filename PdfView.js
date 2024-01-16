@@ -8,8 +8,8 @@
 
 'use strict';
 import React, {Component} from 'react';
-import {ScrollView, View, StyleSheet} from 'react-native';
-import {ViewPropTypes} from 'deprecated-react-native-prop-types';
+import {ScrollView, FlatList, View, StyleSheet, ViewPropTypes} from 'react-native';
+
 import PropTypes from 'prop-types';
 
 import PdfManager from './PdfManager';
