@@ -8,8 +8,8 @@
 
 'use strict';
 import React, {Component} from 'react';
-import {ScrollView, FlatList, View, StyleSheet, ViewPropTypes} from 'react-native';
-
+import {ScrollView, View, StyleSheet} from 'react-native';
+import {ViewPropTypes} from 'deprecated-react-native-prop-types';
 import PropTypes from 'prop-types';
 
 import PdfManager from './PdfManager';
@@ -54,6 +54,7 @@ export default class PdfView extends Component {
         maxScale: MAX_SCALE,
         spacing: 10,
         style: {},
+        progressContainerStyle: {},
         fitPolicy: 2,
         horizontal: false,
         centerContent: false,
