@@ -40,6 +40,10 @@ export default class PdfView extends Component {
         singlePage: PropTypes.bool,
         onPageSingleTap: PropTypes.func,
         onScaleChanged: PropTypes.func,
+        footer: PropTypes.element,
+        extraHeight: PropTypes.number,
+        scrollEnabled: PropTypes.bool,
+        scrollRef: PropTypes.func,
     };
 
     static defaultProps = {
@@ -60,6 +64,11 @@ export default class PdfView extends Component {
         onPageSingleTap: (page, x, y) => {
         },
         onScaleChanged: (scale) => {
+        },
+        footer: null,
+        extraHeight: 0,
+        scrollEnabled: true,
+        scrollRef: (ref) => {
         },
     };
 
@@ -162,9 +171,11 @@ export default class PdfView extends Component {
         let fitPolicy = this.props.fitPolicy;
 
         // if only one page, show whole page in center
+        /* We may want to remove this behavior to allow whole pages to fill screen
         if (this.state.numberOfPages === 1 || this.props.singlePage) {
             fitPolicy = 2;
         }
+        */
 
 
         switch (fitPolicy) {
@@ -189,9 +200,11 @@ export default class PdfView extends Component {
         let fitPolicy = this.props.fitPolicy;
 
         // if only one page, show whole page in center
+        /* We may want to remove this behavior to allow whole pages to fill screen
         if (this.state.numberOfPages === 1 || this.props.singlePage) {
             fitPolicy = 2;
         }
+        */
 
         switch (fitPolicy) {
             case 0: //fit width
@@ -270,6 +283,15 @@ export default class PdfView extends Component {
             />
         )
 
+        // If we have the footer at this index, render it at the bottom of the flat list
+        if (this.props.footer && item.footer) {
+            return (
+                <View key={item.key}>
+                    {this.props.footer}
+                </View>
+            )
+        }
+
         if (this.props.singlePage) {
             return (
                 <View style={{flexDirection: this.props.horizontal ? 'row' : 'column'}} >
@@ -311,7 +333,10 @@ export default class PdfView extends Component {
     };
 
 
-    _getRef = (ref) => this._flatList = ref;
+    _getRef = (ref) => {
+        this._flatList = ref;
+        this.props.scrollRef && this.props.scrollRef(ref);
+    }
 
     _getItemLayout = (data, index) => ({
         length: this.props.horizontal ? this._getPageWidth() : this._getPageHeight(),
@@ -341,6 +366,11 @@ export default class PdfView extends Component {
             }
         }
 
+        // Add last item as the footer
+        if (this.props.footer) {
+            data.push({key: data.length, footer: true});
+        }
+
         return (
             <PdfViewFlatList
                 ref={this._getRef}
@@ -349,7 +379,7 @@ export default class PdfView extends Component {
                 contentContainerStyle={[{
                     justifyContent: 'center',
                     alignItems: 'center'
-                }, this.props.horizontal ? {height: this.state.contentContainerSize.height * this.state.scale} : {width: this.state.contentContainerSize.width * this.state.scale}]}
+                }, this.props.horizontal ? {height: (this.state.contentContainerSize.height * this.state.scale)} : {width: (this.state.contentContainerSize.width * this.state.scale) + this.props.extraHeight}]}
                 horizontal={this.props.horizontal}
                 data={data}
                 renderItem={this._renderItem}
@@ -361,6 +391,7 @@ export default class PdfView extends Component {
                     {...props}
                     centerContent={this.state.centerContent}
                     pinchGestureEnabled={false}
+                    scrollEnabled={this.props.scrollEnabled}
                 />}
                 initialScrollIndex={this.props.page < 1 ? 0 : this.props.page - 1}
                 onViewableItemsChanged={this._onViewableItemsChanged}

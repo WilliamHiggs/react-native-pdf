@@ -67,6 +67,12 @@ export default class Pdf extends Component {
         onLayout: PropTypes.bool,
         accessibilityLiveRegion: PropTypes.string,
         accessibilityComponentType: PropTypes.string,
+
+        // Props for a footer view below the PDF view
+        footer: PropTypes.element,
+        extraHeight: PropTypes.number,
+        scrollEnabled: PropTypes.bool,
+        scrollRef: PropTypes.func,
     };
 
     static defaultProps = {
@@ -98,6 +104,10 @@ export default class Pdf extends Component {
         onScaleChanged: (scale) => {
         },
         onPressLink: (url) => {
+        },
+        footer: null,
+        extraHeight:0,
+        scrollRef: (ref) => {
         },
     };
 
@@ -402,7 +412,7 @@ export default class Pdf extends Component {
                                         <PdfCustom
                                             ref={component => (this._root = component)}
                                             {...this.props}
-                                            style={[{flex:1,backgroundColor: '#EEE'}, this.props.style]}
+                                            style={[{flex:1,backgroundColor: '#FFF'}, this.props.style]}
                                             path={this.state.path}
                                             onChange={this._onChange}
                                         />
@@ -411,13 +421,13 @@ export default class Pdf extends Component {
                                                 <PdfCustom
                                                     ref={component => (this._root = component)}
                                                     {...this.props}
-                                                    style={[{backgroundColor: '#EEE',overflow: 'hidden'}, this.props.style]}
+                                                    style={[{backgroundColor: '#FFF',overflow: 'hidden'}, this.props.style]}
                                                     path={this.state.path}
                                                     onChange={this._onChange}
                                                 />
                                             ):(<PdfView
                                                 {...this.props}
-                                                style={[{backgroundColor: '#EEE',overflow: 'hidden'}, this.props.style]}
+                                                style={[{backgroundColor: '#FFF',overflow: 'hidden'}, this.props.style]}
                                                 path={this.state.path}
                                                 onLoadComplete={this.props.onLoadComplete}
                                                 onPageChanged={this.props.onPageChanged}
@@ -425,6 +435,10 @@ export default class Pdf extends Component {
                                                 onPageSingleTap={this.props.onPageSingleTap}
                                                 onScaleChanged={this.props.onScaleChanged}
                                                 onPressLink={this.props.onPressLink}
+                                                footer={this.props.footer}
+                                                extraHeight={this.props.extraHeight}
+                                                scrollEnabled={this.props.scrollEnabled}
+                                                scrollRef={ref => this.props.scrollRef && this.props.scrollRef(ref)}
                                             />)
                                     )
                                 )}
