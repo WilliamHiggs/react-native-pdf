@@ -51,6 +51,7 @@ export default class Pdf extends Component {
         enableAnnotationRendering: PropTypes.bool,
         showsHorizontalScrollIndicator: PropTypes.bool,
         showsVerticalScrollIndicator: PropTypes.bool,
+        scrollEnabled: PropTypes.bool,
         enablePaging: PropTypes.bool,
         enableRTL: PropTypes.bool,
         fitPolicy: PropTypes.number,
@@ -92,6 +93,7 @@ export default class Pdf extends Component {
         enableAnnotationRendering: true,
         showsHorizontalScrollIndicator: true,
         showsVerticalScrollIndicator: true,
+        scrollEnabled: true,
         enablePaging: false,
         enableRTL: false,
         trustAllCerts: true,
@@ -156,8 +158,8 @@ export default class Pdf extends Component {
     componentWillUnmount() {
         this._mounted = false;
         if (this.lastRNBFTask) {
-            this.lastRNBFTask.cancel(err => {
-            });
+            // this.lastRNBFTask.cancel(err => {
+            // });
             this.lastRNBFTask = null;
         }
 
@@ -419,7 +421,7 @@ export default class Pdf extends Component {
                     <View style={[this.props.style,{overflow: 'hidden'}]}>
                         {!this.state.isDownloaded?
                             (<View
-                                style={styles.progressContainer}
+                                style={[styles.progressContainer, this.props.progressContainerStyle]}
                             >
                                 {this.props.renderActivityIndicator
                                     ? this.props.renderActivityIndicator(this.state.progress)
