@@ -115,9 +115,10 @@ export default class DoubleTapView extends Component {
 
     };
 
+    // RNNavigation seems to have broken my gestureHandlers - I don't need double/single tap so I will remove them.
     render() {
         return (
-            <View {...this.props} {...this.gestureHandlers.panHandlers}>
+            <View {...this.props} /*{...this.gestureHandlers.panHandlers}*/>
                 {this.props.children}
             </View>
         );
