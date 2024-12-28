@@ -398,7 +398,7 @@ export default class PdfView extends Component {
                 viewabilityConfig={VIEWABILITYCONFIG}
                 onScroll={this._onScroll}
                 onContentSizeChange={this._onListContentSizeChange}
-                scrollEnabled={!this.props.singlePage}
+                scrollEnabled={this.props.scrollEnabled}
             />
         );
 
