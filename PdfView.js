@@ -40,10 +40,15 @@ export default class PdfView extends Component {
         singlePage: PropTypes.bool,
         onPageSingleTap: PropTypes.func,
         onScaleChanged: PropTypes.func,
+<<<<<<< HEAD
         footer: PropTypes.element,
         extraHeight: PropTypes.number,
         scrollEnabled: PropTypes.bool,
         scrollRef: PropTypes.func,
+=======
+        showsHorizontalScrollIndicator: PropTypes.bool,
+        showsVerticalScrollIndicator: PropTypes.bool,
+>>>>>>> d49cb922480c879848e1d8ad587fd6c7b0b1aa86
     };
 
     static defaultProps = {
@@ -66,11 +71,16 @@ export default class PdfView extends Component {
         },
         onScaleChanged: (scale) => {
         },
+<<<<<<< HEAD
         footer: null,
         extraHeight: 0,
         scrollEnabled: true,
         scrollRef: (ref) => {
         },
+=======
+        showsHorizontalScrollIndicator: true,
+        showsVerticalScrollIndicator: true,
+>>>>>>> d49cb922480c879848e1d8ad587fd6c7b0b1aa86
     };
 
     constructor(props) {
